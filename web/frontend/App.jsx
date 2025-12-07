@@ -37,32 +37,6 @@ function DashboardPage() {
             </Text>
           </LegacyCard>
         </Layout.Section>
-
-        <Layout.Section secondary>
-          <LegacyCard sectioned>
-            <Text variant="headingSm" as="h3" fontWeight="semibold">
-              Total Pages
-            </Text>
-            <div style={{ marginTop: "8px" }}>
-              <Text variant="heading2xl" as="p">
-                12
-              </Text>
-            </div>
-          </LegacyCard>
-        </Layout.Section>
-
-        <Layout.Section secondary>
-          <LegacyCard sectioned>
-            <Text variant="headingSm" as="h3" fontWeight="semibold">
-              Content Blocks
-            </Text>
-            <div style={{ marginTop: "8px" }}>
-              <Text variant="heading2xl" as="p">
-                7
-              </Text>
-            </div>
-          </LegacyCard>
-        </Layout.Section>
       </Layout>
     </Page>
   );
