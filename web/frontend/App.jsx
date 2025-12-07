@@ -1,29 +1,149 @@
 import { useState } from "react";
 import { AppProvider, Frame, Navigation, Page, Card, Layout, Text, LegacyCard } from "@shopify/polaris";
+import { 
+  HomeIcon, 
+  OrderIcon, 
+  ProductIcon, 
+  CustomerIcon, 
+  MarketingIcon, 
+  DiscountIcon, 
+  ContentIcon,
+  MarketIcon,
+  AnalyticsIcon,
+  ChannelIcon,
+  AppsIcon,
+  SettingsIcon
+} from "@shopify/polaris-icons";
 
 export default function App() {
-  const [selectedItem, setSelectedItem] = useState("dashboard");
+  const [selectedItem, setSelectedItem] = useState("/apps/appmint/dashboard");
 
-  const navigationItems = [
+  const mainNavigationItems = [
     {
-      label: "Dashboard",
-      onClick: () => setSelectedItem("dashboard"),
-      selected: selectedItem === "dashboard",
+      label: "Home",
+      icon: HomeIcon,
+      url: "/",
+      selected: selectedItem === "/",
+      onClick: () => setSelectedItem("/"),
+    },
+    {
+      label: "Orders",
+      icon: OrderIcon,
+      url: "/orders",
+      selected: selectedItem === "/orders",
+      onClick: () => setSelectedItem("/orders"),
+    },
+    {
+      label: "Products",
+      icon: ProductIcon,
+      url: "/products",
+      selected: selectedItem === "/products",
+      onClick: () => setSelectedItem("/products"),
+    },
+    {
+      label: "Customers",
+      icon: CustomerIcon,
+      url: "/customers",
+      selected: selectedItem === "/customers",
+      onClick: () => setSelectedItem("/customers"),
+    },
+    {
+      label: "Marketing",
+      icon: MarketingIcon,
+      url: "/marketing",
+      selected: selectedItem === "/marketing",
+      onClick: () => setSelectedItem("/marketing"),
+    },
+    {
+      label: "Discounts",
+      icon: DiscountIcon,
+      url: "/discounts",
+      selected: selectedItem === "/discounts",
+      onClick: () => setSelectedItem("/discounts"),
     },
     {
       label: "Content",
-      onClick: () => setSelectedItem("content"),
-      selected: selectedItem === "content",
+      icon: ContentIcon,
+      url: "/content",
+      selected: selectedItem === "/content",
+      onClick: () => setSelectedItem("/content"),
     },
     {
-      label: "Pages",
-      onClick: () => setSelectedItem("pages"),
-      selected: selectedItem === "pages",
+      label: "Markets",
+      icon: MarketIcon,
+      url: "/markets",
+      selected: selectedItem === "/markets",
+      onClick: () => setSelectedItem("/markets"),
     },
+    {
+      label: "Analytics",
+      icon: AnalyticsIcon,
+      url: "/analytics",
+      selected: selectedItem === "/analytics",
+      onClick: () => setSelectedItem("/analytics"),
+    },
+  ];
+
+  const salesChannelItems = [
+    {
+      label: "Online Store",
+      icon: ChannelIcon,
+      url: "/online-store",
+      selected: selectedItem === "/online-store",
+      onClick: () => setSelectedItem("/online-store"),
+    },
+  ];
+
+  const appsItems = [
+    {
+      label: "Flow",
+      icon: AppsIcon,
+      url: "/apps/flow",
+      selected: selectedItem === "/apps/flow",
+      onClick: () => setSelectedItem("/apps/flow"),
+    },
+    {
+      label: "AppMint",
+      icon: AppsIcon,
+      url: "/apps/appmint",
+      selected: selectedItem === "/apps/appmint",
+      onClick: () => setSelectedItem("/apps/appmint"),
+      subNavigationItems: [
+        {
+          label: "Dashboard",
+          url: "/apps/appmint/dashboard",
+          selected: selectedItem === "/apps/appmint/dashboard",
+          onClick: () => setSelectedItem("/apps/appmint/dashboard"),
+        },
+        {
+          label: "Content",
+          url: "/apps/appmint/content",
+          selected: selectedItem === "/apps/appmint/content",
+          onClick: () => setSelectedItem("/apps/appmint/content"),
+        },
+        {
+          label: "Pages",
+          url: "/apps/appmint/pages",
+          selected: selectedItem === "/apps/appmint/pages",
+          onClick: () => setSelectedItem("/apps/appmint/pages"),
+        },
+        {
+          label: "Settings",
+          url: "/apps/appmint/settings",
+          selected: selectedItem === "/apps/appmint/settings",
+          onClick: () => setSelectedItem("/apps/appmint/settings"),
+        },
+      ],
+    },
+  ];
+
+  const settingsItems = [
     {
       label: "Settings",
-      onClick: () => setSelectedItem("settings"),
-      selected: selectedItem === "settings",
+      icon: SettingsIcon,
+      url: "/settings",
+      selected: selectedItem === "/settings",
+      onClick: () => setSelectedItem("/settings"),
     },
   ];
 
@@ -31,15 +151,30 @@ export default function App() {
     <AppProvider i18n={{}}>
       <Frame
         navigation={
-          <Navigation location="/">
-            <Navigation.Section items={navigationItems} />
+          <Navigation location={selectedItem}>
+            <Navigation.Section items={mainNavigationItems} />
+            <Navigation.Section title="Sales channels" items={salesChannelItems} />
+            <Navigation.Section title="Apps" items={appsItems} />
+            <Navigation.Section items={settingsItems} separator />
           </Navigation>
         }
       >
-        {selectedItem === "dashboard" && <DashboardPage />}
-        {selectedItem === "content" && <PlaceholderPage title="Content" />}
-        {selectedItem === "pages" && <PlaceholderPage title="Pages" />}
-        {selectedItem === "settings" && <PlaceholderPage title="Settings" />}
+        {selectedItem === "/apps/appmint/dashboard" && <DashboardPage />}
+        {selectedItem === "/apps/appmint/content" && <PlaceholderPage title="Content" />}
+        {selectedItem === "/apps/appmint/pages" && <PlaceholderPage title="Pages" />}
+        {selectedItem === "/apps/appmint/settings" && <PlaceholderPage title="Settings" />}
+        {selectedItem === "/" && <PlaceholderPage title="Home" />}
+        {selectedItem === "/orders" && <PlaceholderPage title="Orders" />}
+        {selectedItem === "/products" && <PlaceholderPage title="Products" />}
+        {selectedItem === "/customers" && <PlaceholderPage title="Customers" />}
+        {selectedItem === "/marketing" && <PlaceholderPage title="Marketing" />}
+        {selectedItem === "/discounts" && <PlaceholderPage title="Discounts" />}
+        {selectedItem === "/content" && <PlaceholderPage title="Content" />}
+        {selectedItem === "/markets" && <PlaceholderPage title="Markets" />}
+        {selectedItem === "/analytics" && <PlaceholderPage title="Analytics" />}
+        {selectedItem === "/online-store" && <PlaceholderPage title="Online Store" />}
+        {selectedItem === "/apps/flow" && <PlaceholderPage title="Flow" />}
+        {selectedItem === "/settings" && <PlaceholderPage title="Settings" />}
       </Frame>
     </AppProvider>
   );
