@@ -1,19 +1,5 @@
 import { useState } from "react";
-import { AppProvider, Frame, Navigation, Page, Card, Layout, Text, LegacyCard } from "@shopify/polaris";
-import { 
-  HomeIcon, 
-  OrderIcon, 
-  ProductIcon, 
-  PersonIcon, 
-  MegaphoneIcon, 
-  PercentIcon, 
-  PageIcon,
-  GlobeIcon,
-  ChartIcon,
-  StoreIcon,
-  AppsIcon,
-  SettingsIcon
-} from "@shopify/polaris-icons";
+import { AppProvider, Frame, Navigation, Page, Layout, Text, LegacyCard } from "@shopify/polaris";
 
 export default function App() {
   const [selectedItem, setSelectedItem] = useState("/apps/appmint/dashboard");
@@ -21,63 +7,54 @@ export default function App() {
   const mainNavigationItems = [
     {
       label: "Home",
-      icon: HomeIcon,
       url: "/",
       selected: selectedItem === "/",
       onClick: () => setSelectedItem("/"),
     },
     {
       label: "Orders",
-      icon: OrderIcon,
       url: "/orders",
       selected: selectedItem === "/orders",
       onClick: () => setSelectedItem("/orders"),
     },
     {
       label: "Products",
-      icon: ProductIcon,
       url: "/products",
       selected: selectedItem === "/products",
       onClick: () => setSelectedItem("/products"),
     },
     {
       label: "Customers",
-      icon: PersonIcon,
       url: "/customers",
       selected: selectedItem === "/customers",
       onClick: () => setSelectedItem("/customers"),
     },
     {
       label: "Marketing",
-      icon: MegaphoneIcon,
       url: "/marketing",
       selected: selectedItem === "/marketing",
       onClick: () => setSelectedItem("/marketing"),
     },
     {
       label: "Discounts",
-      icon: PercentIcon,
       url: "/discounts",
       selected: selectedItem === "/discounts",
       onClick: () => setSelectedItem("/discounts"),
     },
     {
       label: "Content",
-      icon: PageIcon,
       url: "/content",
       selected: selectedItem === "/content",
       onClick: () => setSelectedItem("/content"),
     },
     {
       label: "Markets",
-      icon: GlobeIcon,
       url: "/markets",
       selected: selectedItem === "/markets",
       onClick: () => setSelectedItem("/markets"),
     },
     {
       label: "Analytics",
-      icon: ChartIcon,
       url: "/analytics",
       selected: selectedItem === "/analytics",
       onClick: () => setSelectedItem("/analytics"),
@@ -87,7 +64,6 @@ export default function App() {
   const salesChannelItems = [
     {
       label: "Online Store",
-      icon: StoreIcon,
       url: "/online-store",
       selected: selectedItem === "/online-store",
       onClick: () => setSelectedItem("/online-store"),
@@ -97,14 +73,12 @@ export default function App() {
   const appsItems = [
     {
       label: "Flow",
-      icon: AppsIcon,
       url: "/apps/flow",
       selected: selectedItem === "/apps/flow",
       onClick: () => setSelectedItem("/apps/flow"),
     },
     {
       label: "AppMint",
-      icon: AppsIcon,
       url: "/apps/appmint",
       selected: selectedItem === "/apps/appmint",
       onClick: () => setSelectedItem("/apps/appmint"),
@@ -140,7 +114,6 @@ export default function App() {
   const settingsItems = [
     {
       label: "Settings",
-      icon: SettingsIcon,
       url: "/settings",
       selected: selectedItem === "/settings",
       onClick: () => setSelectedItem("/settings"),
