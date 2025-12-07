@@ -1,17 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider, Page, Layout, Text, LegacyCard } from "@shopify/polaris";
-import { NavMenu } from "@shopify/app-bridge-react";
 import "@shopify/polaris/build/esm/styles.css";
 
 export default function App() {
   return (
     <>
-      <NavMenu>
+      <ui-nav-menu>
         <a href="/" rel="home">Dashboard</a>
         <a href="/content">Content</a>
         <a href="/pages">Pages</a>
         <a href="/settings">Settings</a>
-      </NavMenu>
+      </ui-nav-menu>
       
       <BrowserRouter>
         <AppProvider i18n={{}}>
