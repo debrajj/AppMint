@@ -17,49 +17,51 @@ function AppLayout() {
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", backgroundColor: "#f6f6f7" }}>
-      {/* Left Sidebar Navigation - OUTSIDE AppProvider */}
-      <nav style={{
+      {/* Left Sidebar Navigation - OUTSIDE AppProvider with Polaris styling */}
+      <nav className="Polaris-Navigation" style={{
         width: "240px",
-        backgroundColor: "#f6f6f7",
-        borderRight: "1px solid #e1e3e5",
-        padding: "16px 0",
         position: "fixed",
         height: "100vh",
         overflowY: "auto",
         zIndex: 100
       }}>
         <div style={{ 
-          padding: "0 16px 16px", 
-          borderBottom: "1px solid #e1e3e5", 
-          marginBottom: "16px",
-          fontSize: "18px",
-          fontWeight: "600",
-          color: "#202223"
+          padding: "16px 16px 12px", 
+          borderBottom: "1px solid var(--p-color-border-subdued)",
+          marginBottom: "8px"
         }}>
-          AppMint
+          <div style={{
+            fontSize: "16px",
+            fontWeight: "600",
+            color: "var(--p-color-text)"
+          }}>
+            AppMint
+          </div>
         </div>
         
-        <div>
-          <NavItem 
-            label="Dashboard" 
-            onClick={() => navigate("/dashboard")}
-            active={currentPath === "/dashboard" || currentPath === "/"}
-          />
-          <NavItem 
-            label="Content" 
-            onClick={() => navigate("/content")}
-            active={currentPath === "/content"}
-          />
-          <NavItem 
-            label="Pages" 
-            onClick={() => navigate("/pages")}
-            active={currentPath === "/pages"}
-          />
-          <NavItem 
-            label="Settings" 
-            onClick={() => navigate("/settings")}
-            active={currentPath === "/settings"}
-          />
+        <div className="Polaris-Navigation__SecondaryNavigation">
+          <ul className="Polaris-Navigation__List">
+            <NavItem 
+              label="Dashboard" 
+              onClick={() => navigate("/dashboard")}
+              active={currentPath === "/dashboard" || currentPath === "/"}
+            />
+            <NavItem 
+              label="Content" 
+              onClick={() => navigate("/content")}
+              active={currentPath === "/content"}
+            />
+            <NavItem 
+              label="Pages" 
+              onClick={() => navigate("/pages")}
+              active={currentPath === "/pages"}
+            />
+            <NavItem 
+              label="Settings" 
+              onClick={() => navigate("/settings")}
+              active={currentPath === "/settings"}
+            />
+          </ul>
         </div>
       </nav>
 
@@ -81,35 +83,15 @@ function AppLayout() {
 
 function NavItem({ label, onClick, active }) {
   return (
-    <button
-      onClick={onClick}
-      style={{
-        display: "block",
-        width: "100%",
-        padding: "10px 16px",
-        border: "none",
-        backgroundColor: active ? "#ffffff" : "transparent",
-        color: active ? "#202223" : "#6d7175",
-        textAlign: "left",
-        cursor: "pointer",
-        fontSize: "14px",
-        fontWeight: active ? "600" : "400",
-        borderLeft: active ? "3px solid #008060" : "3px solid transparent",
-        transition: "all 0.2s ease",
-      }}
-      onMouseEnter={(e) => {
-        if (!active) {
-          e.target.style.backgroundColor = "#f1f2f3";
-        }
-      }}
-      onMouseLeave={(e) => {
-        if (!active) {
-          e.target.style.backgroundColor = "transparent";
-        }
-      }}
-    >
-      {label}
-    </button>
+    <li className="Polaris-Navigation__ListItem">
+      <button
+        onClick={onClick}
+        className={`Polaris-Navigation__Item ${active ? 'Polaris-Navigation__Item--selected' : ''}`}
+        type="button"
+      >
+        <span className="Polaris-Navigation__Text">{label}</span>
+      </button>
+    </li>
   );
 }
 
