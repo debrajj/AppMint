@@ -1,13 +1,26 @@
 import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from "react-router-dom";
 import { AppProvider, Page, Layout, Text, LegacyCard } from "@shopify/polaris";
+import { Provider as AppBridgeProvider } from "@shopify/app-bridge-react";
 import "@shopify/polaris/build/esm/styles.css";
 
 export default function App() {
+  // Get Shopify parameters from URL
+  const host = new URLSearchParams(window.location.search).get("host");
+  const shop = new URLSearchParams(window.location.search).get("shop");
+
+  const config = {
+    apiKey: import.meta.env.VITE_SHOPIFY_API_KEY || "your-api-key",
+    host: host || window.btoa(`${shop}/admin`),
+    forceRedirect: false,
+  };
+
   return (
     <BrowserRouter>
-      <AppProvider i18n={{}}>
-        <AppContent />
-      </AppProvider>
+      <AppBridgeProvider config={config}>
+        <AppProvider i18n={{}}>
+          <AppContent />
+        </AppProvider>
+      </AppBridgeProvider>
     </BrowserRouter>
   );
 }
