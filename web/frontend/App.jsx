@@ -1,34 +1,13 @@
 import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from "react-router-dom";
 import { AppProvider, Page, Layout, Text, LegacyCard } from "@shopify/polaris";
-import { Provider as AppBridgeProvider } from "@shopify/app-bridge-react";
 import "@shopify/polaris/build/esm/styles.css";
 
 export default function App() {
-  // Get Shopify parameters from URL - these are automatically provided by Shopify when app is installed
-  const params = new URLSearchParams(window.location.search);
-  const host = params.get("host");
-  const shop = params.get("shop");
-
-  // App Bridge config - works automatically when embedded in Shopify
-  // No API key needed for basic functionality
-  const config = host ? {
-    host: host,
-    forceRedirect: false,
-  } : null;
-
   return (
     <BrowserRouter>
-      {config ? (
-        <AppBridgeProvider config={config}>
-          <AppProvider i18n={{}}>
-            <AppContent />
-          </AppProvider>
-        </AppBridgeProvider>
-      ) : (
-        <AppProvider i18n={{}}>
-          <AppContent />
-        </AppProvider>
-      )}
+      <AppProvider i18n={{}}>
+        <AppContent />
+      </AppProvider>
     </BrowserRouter>
   );
 }
