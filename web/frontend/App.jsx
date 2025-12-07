@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider, Page, Layout, Text, LegacyCard } from "@shopify/polaris";
 import { NavMenu } from "@shopify/app-bridge-react";
 import "@shopify/polaris/build/esm/styles.css";
