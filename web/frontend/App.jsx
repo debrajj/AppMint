@@ -4,23 +4,31 @@ import { Provider as AppBridgeProvider } from "@shopify/app-bridge-react";
 import "@shopify/polaris/build/esm/styles.css";
 
 export default function App() {
-  // Get Shopify parameters from URL
-  const host = new URLSearchParams(window.location.search).get("host");
-  const shop = new URLSearchParams(window.location.search).get("shop");
+  // Get Shopify parameters from URL - these are automatically provided by Shopify when app is installed
+  const params = new URLSearchParams(window.location.search);
+  const host = params.get("host");
+  const shop = params.get("shop");
 
-  const config = {
-    apiKey: import.meta.env.VITE_SHOPIFY_API_KEY || "your-api-key",
-    host: host || window.btoa(`${shop}/admin`),
+  // App Bridge config - works automatically when embedded in Shopify
+  // No API key needed for basic functionality
+  const config = host ? {
+    host: host,
     forceRedirect: false,
-  };
+  } : null;
 
   return (
     <BrowserRouter>
-      <AppBridgeProvider config={config}>
+      {config ? (
+        <AppBridgeProvider config={config}>
+          <AppProvider i18n={{}}>
+            <AppContent />
+          </AppProvider>
+        </AppBridgeProvider>
+      ) : (
         <AppProvider i18n={{}}>
           <AppContent />
         </AppProvider>
-      </AppBridgeProvider>
+      )}
     </BrowserRouter>
   );
 }
