@@ -5,16 +5,6 @@ import "@shopify/polaris/build/esm/styles.css";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AppProvider i18n={{}}>
-        <AppContent />
-      </AppProvider>
-    </BrowserRouter>
-  );
-}
-
-function AppContent() {
-  return (
     <>
       <NavMenu>
         <a href="/" rel="home">Dashboard</a>
@@ -23,12 +13,16 @@ function AppContent() {
         <a href="/settings">Settings</a>
       </NavMenu>
       
-      <Routes>
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/content" element={<PlaceholderPage title="Content" />} />
-        <Route path="/pages" element={<PlaceholderPage title="Pages" />} />
-        <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
-      </Routes>
+      <BrowserRouter>
+        <AppProvider i18n={{}}>
+          <Routes>
+            <Route path="/" element={<DashboardPage />} />
+            <Route path="/content" element={<PlaceholderPage title="Content" />} />
+            <Route path="/pages" element={<PlaceholderPage title="Pages" />} />
+            <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
+          </Routes>
+        </AppProvider>
+      </BrowserRouter>
     </>
   );
 }
