@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from "react-router-dom";
 import { AppProvider, Page, Layout, Text, LegacyCard } from "@shopify/polaris";
 import "@shopify/polaris/build/esm/styles.css";
 
@@ -14,6 +14,7 @@ export default function App() {
 
 function AppContent() {
   const location = useLocation();
+  const navigate = useNavigate();
   const currentPath = location.pathname;
 
   return (
@@ -37,22 +38,22 @@ function AppContent() {
         <nav>
           <NavItem 
             label="Dashboard" 
-            to="/dashboard"
+            onClick={() => navigate("/dashboard")}
             active={currentPath === "/dashboard" || currentPath === "/"}
           />
           <NavItem 
             label="Content" 
-            to="/content"
+            onClick={() => navigate("/content")}
             active={currentPath === "/content"}
           />
           <NavItem 
             label="Pages" 
-            to="/pages"
+            onClick={() => navigate("/pages")}
             active={currentPath === "/pages"}
           />
           <NavItem 
             label="Settings" 
-            to="/settings"
+            onClick={() => navigate("/settings")}
             active={currentPath === "/settings"}
           />
         </nav>
@@ -72,17 +73,19 @@ function AppContent() {
   );
 }
 
-function NavItem({ label, to, active }) {
+function NavItem({ label, onClick, active }) {
   return (
-    <Link
-      to={to}
+    <button
+      onClick={onClick}
       style={{
         display: "block",
         width: "100%",
         padding: "10px 16px",
+        border: "none",
         backgroundColor: active ? "#ffffff" : "transparent",
         color: active ? "#202223" : "#6d7175",
-        textDecoration: "none",
+        textAlign: "left",
+        cursor: "pointer",
         fontSize: "14px",
         fontWeight: active ? "600" : "400",
         borderLeft: active ? "3px solid #008060" : "3px solid transparent",
@@ -100,7 +103,7 @@ function NavItem({ label, to, active }) {
       }}
     >
       {label}
-    </Link>
+    </button>
   );
 }
 
