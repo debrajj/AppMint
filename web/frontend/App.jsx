@@ -5,37 +5,41 @@ import "@shopify/polaris/build/esm/styles.css";
 export default function App() {
   return (
     <BrowserRouter>
-      <AppProvider i18n={{}}>
-        <AppContent />
-      </AppProvider>
+      <AppLayout />
     </BrowserRouter>
   );
 }
 
-function AppContent() {
+function AppLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const currentPath = location.pathname;
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
-      {/* Left Sidebar Navigation */}
-      <div style={{
+    <div style={{ display: "flex", minHeight: "100vh", backgroundColor: "#f6f6f7" }}>
+      {/* Left Sidebar Navigation - OUTSIDE AppProvider */}
+      <nav style={{
         width: "240px",
         backgroundColor: "#f6f6f7",
         borderRight: "1px solid #e1e3e5",
         padding: "16px 0",
         position: "fixed",
         height: "100vh",
-        overflowY: "auto"
+        overflowY: "auto",
+        zIndex: 100
       }}>
-        <div style={{ padding: "0 16px 16px", borderBottom: "1px solid #e1e3e5", marginBottom: "16px" }}>
-          <Text variant="headingMd" as="h2" fontWeight="semibold">
-            AppMint
-          </Text>
+        <div style={{ 
+          padding: "0 16px 16px", 
+          borderBottom: "1px solid #e1e3e5", 
+          marginBottom: "16px",
+          fontSize: "18px",
+          fontWeight: "600",
+          color: "#202223"
+        }}>
+          AppMint
         </div>
         
-        <nav>
+        <div>
           <NavItem 
             label="Dashboard" 
             onClick={() => navigate("/dashboard")}
@@ -56,18 +60,20 @@ function AppContent() {
             onClick={() => navigate("/settings")}
             active={currentPath === "/settings"}
           />
-        </nav>
-      </div>
+        </div>
+      </nav>
 
-      {/* Main Content Area */}
-      <div style={{ marginLeft: "240px", flex: 1, backgroundColor: "#f6f6f7" }}>
-        <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/content" element={<PlaceholderPage title="Content" />} />
-          <Route path="/pages" element={<PlaceholderPage title="Pages" />} />
-          <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
-        </Routes>
+      {/* Main Content Area with AppProvider */}
+      <div style={{ marginLeft: "240px", flex: 1, minHeight: "100vh" }}>
+        <AppProvider i18n={{}}>
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/content" element={<PlaceholderPage title="Content" />} />
+            <Route path="/pages" element={<PlaceholderPage title="Pages" />} />
+            <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
+          </Routes>
+        </AppProvider>
       </div>
     </div>
   );
