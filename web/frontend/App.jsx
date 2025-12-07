@@ -8,15 +8,14 @@ export default function App() {
     <BrowserRouter>
       <AppProvider i18n={{}}>
         <NavMenu>
-          <a href="/dashboard" rel="home">Dashboard</a>
+          <a href="/" rel="home">Dashboard</a>
           <a href="/content">Content</a>
           <a href="/pages">Pages</a>
           <a href="/settings">Settings</a>
         </NavMenu>
         
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/" element={<DashboardPage />} />
           <Route path="/content" element={<PlaceholderPage title="Content" />} />
           <Route path="/pages" element={<PlaceholderPage title="Pages" />} />
           <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
