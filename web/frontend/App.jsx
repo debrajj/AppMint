@@ -4,13 +4,13 @@ import {
   HomeIcon, 
   OrderIcon, 
   ProductIcon, 
-  CustomerIcon, 
+  PersonIcon, 
   MarketingIcon, 
   DiscountIcon, 
-  ContentIcon,
-  MarketIcon,
-  AnalyticsIcon,
-  ChannelIcon,
+  PageIcon,
+  GlobeIcon,
+  ChartIcon,
+  StoreIcon,
   AppsIcon,
   SettingsIcon
 } from "@shopify/polaris-icons";
@@ -42,7 +42,7 @@ export default function App() {
     },
     {
       label: "Customers",
-      icon: CustomerIcon,
+      icon: PersonIcon,
       url: "/customers",
       selected: selectedItem === "/customers",
       onClick: () => setSelectedItem("/customers"),
@@ -63,21 +63,21 @@ export default function App() {
     },
     {
       label: "Content",
-      icon: ContentIcon,
+      icon: PageIcon,
       url: "/content",
       selected: selectedItem === "/content",
       onClick: () => setSelectedItem("/content"),
     },
     {
       label: "Markets",
-      icon: MarketIcon,
+      icon: GlobeIcon,
       url: "/markets",
       selected: selectedItem === "/markets",
       onClick: () => setSelectedItem("/markets"),
     },
     {
       label: "Analytics",
-      icon: AnalyticsIcon,
+      icon: ChartIcon,
       url: "/analytics",
       selected: selectedItem === "/analytics",
       onClick: () => setSelectedItem("/analytics"),
@@ -87,7 +87,7 @@ export default function App() {
   const salesChannelItems = [
     {
       label: "Online Store",
-      icon: ChannelIcon,
+      icon: StoreIcon,
       url: "/online-store",
       selected: selectedItem === "/online-store",
       onClick: () => setSelectedItem("/online-store"),
