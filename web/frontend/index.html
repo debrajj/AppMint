@@ -4,10 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AppMint</title>
+    
+    <!-- Shopify App Bridge -->
     <script 
       src="https://cdn.shopify.com/shopifycloud/app-bridge.js"
-      data-api-key="91ef991b9f0792fa6898f42fcfc867e0"
+      data-api-key="4706f59939cfc9e225f5e98739f5ad99"
     ></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                DEFAULT: '#E91E63',
+                50: '#FCE4EC',
+                100: '#F8BBD0',
+                200: '#F48FB1',
+                300: '#F06292',
+                400: '#EC407A',
+                500: '#E91E63',
+                600: '#D81B60',
+                700: '#C2185B',
+                800: '#AD1457',
+                900: '#880E4F',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+      .hide-scrollbar::-webkit-scrollbar { display: none; }
+      .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
   </head>
   <body>
     <div id="root"></div>

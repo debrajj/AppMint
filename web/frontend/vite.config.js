@@ -8,6 +8,18 @@ export default defineConfig({
     hmr: {
       protocol: "ws",
     },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/webhooks': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
   define: {
     "process.env.SHOPIFY_API_KEY": JSON.stringify(process.env.SHOPIFY_API_KEY),
